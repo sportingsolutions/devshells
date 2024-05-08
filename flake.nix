@@ -49,21 +49,21 @@
 
           #? usage: 
           #? nix develop .#default
-          default = pkgs.mkShell {
+          default = pkgs.mkShell {          
             buildInputs = with pkgs; [ 
               # ansible  # IT automation
-              aws-azure-login # Terraform uses this to allow access to state files
-              awscli2 # Terraform uses this to allow access to state files
+              # aws-azure-login # Terraform uses this to allow access to state files
+              # awscli2 # Terraform uses this to allow access to state files
               # ansible-lint # Linter for Ansible #! install this directly until solution found to get latest
               google-cloud-sdk # Required for accesing Vault
-              glibcLocales  # Ansible  needs this [source: https://github.com/NixOS/nixpkgs/issues/223151]
-              gomplate
-              go-task # Task runner
+              # glibcLocales  # Ansible  needs this [source: https://github.com/NixOS/nixpkgs/issues/223151]
+              # gomplate
+              # go-task # Task runner
               htop 
               jq # Utility to display JSON files
               just # a [better] 'make'-alternative 
-              nodejs # Needed for aws-azure-login
-              packer # Template building automation
+              # nodejs # Needed for aws-azure-login
+              # packer # Template building automation
               pre-commit # Code valudation upon commit
 
               # python3
@@ -74,55 +74,61 @@
               # python312Packages.requests
               # python312Packages.ruamel-yaml #! allowws using: ruamel-yaml:0.18.6
 
-              sshpass # For those rare cases when SSH is used with password 
+              # sshpass # For those rare cases when SSH is used with password 
               # terraform # Infrastructure deployment automation
               # terragrunt # Wrapper for Terraform
               tree # Utility to quickly view folder structure
-              tmux # Terminal multiplexer
+              # tmux # Terminal multiplexer
               whois # DNS lookup
-              xorriso # Packer needs this in order to build VMWare VM images
+              # xorriso # Packer needs this in order to build VMWare VM images
               vault-bin # CLI for accessing our Vault #! --> NOT the one without '-bin' [forget about that one! seriously!]
-              zsh # A better shell
+              # zsh # A better shell
               ];
+            shellHook = ''              
+              echo "==>  Entering generic development environment ==>  "
+            '';                
           };
 
           #? usage: 
           #? nix develop .#ansible
-          ansible = pkgs.mkShell {
+          ansible = pkgs.mkShell {         
             buildInputs = with pkgs; [ 
               ansible  # IT automation
-              aws-azure-login # Terraform uses this to allow access to state files
-              awscli2 # Terraform uses this to allow access to state files
+              # aws-azure-login # Terraform uses this to allow access to state files
+              # awscli2 # Terraform uses this to allow access to state files
               ansible-lint # Linter for Ansible #! install this directly until solution found to get latest
               google-cloud-sdk # Required for accesing Vault
               glibcLocales  # Ansible  needs this [source: https://github.com/NixOS/nixpkgs/issues/223151]
-              gomplate
-              go-task # Task runner
-              htop 
-              jq # Utility to display JSON files
+              # gomplate
+              # go-task # Task runner
+              # htop 
+              # jq # Utility to display JSON files
               just # a [better] 'make'-alternative 
-              nodejs # Needed for aws-azure-login
-              packer # Template building automation
+              # nodejs # Needed for aws-azure-login
+              # packer # Template building automation
               pre-commit # Code valudation upon commit
 
               python3
               python312Packages.flake8
-              # python312Packages.kerberos # KERBEROS authentication for Ansible to communicate with domain-joined Windows hosts              #FIXME: this needs inseucre packages!
-              # python312Packages.pip
-              # python312Packages.pywinrm # Allow Ansible to manage Windows-hosts
-              # python312Packages.requests
-              # python312Packages.ruamel-yaml #! allowws using: ruamel-yaml:0.18.6
+              python312Packages.kerberos # KERBEROS authentication for Ansible to communicate with domain-joined Windows hosts              #FIXME: this needs inseucre packages!
+              python312Packages.pip
+              python312Packages.pywinrm # Allow Ansible to manage Windows-hosts
+              python312Packages.requests
+              python312Packages.ruamel-yaml #! allowws using: ruamel-yaml:0.18.6
 
               sshpass # For those rare cases when SSH is used with password 
-              terraform # Infrastructure deployment automation
-              terragrunt # Wrapper for Terraform
+              # terraform # Infrastructure deployment automation
+              # terragrunt # Wrapper for Terraform
               tree # Utility to quickly view folder structure
-              tmux # Terminal multiplexer
-              whois # DNS lookup
-              xorriso # Packer needs this in order to build VMWare VM images
+              # tmux # Terminal multiplexer
+              # whois # DNS lookup
+              # xorriso # Packer needs this in order to build VMWare VM images
               vault-bin # CLI for accessing our Vault #! --> NOT the one without '-bin' [forget about that one! seriously!]
-              zsh # A better shell
+              # zsh # A better shell
               ];
+            shellHook = ''
+              echo "==>  Entering Ansible development environment ==>  "
+            '';                 
           };          
         });
 
