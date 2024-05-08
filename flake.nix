@@ -139,7 +139,8 @@
             shellHook = ''
               echo "==>  Entering Ansible development environment ==>  "
             '';                 
-          };          
+          };  
+                  
         });
 
       # The default package for 'nix build'. This makes sense if the
