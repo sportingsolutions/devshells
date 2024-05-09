@@ -26,7 +26,7 @@
           # These are neccesary to allow certain restrictions to be removed
           allowUnfree = true; 
           permittedInsecurePackages = [
-                "python3.12-kerberos-1.3.1"
+                "python3.11-kerberos-1.3.1"
               ];     
         }; 
         }
@@ -68,12 +68,12 @@
             nodejs # Needed for aws-azure-login
             packer # Template building automation
             pre-commit # Code valudation upon commit
-            python312
-            python312Packages.flake8
-            python312Packages.kerberos # KERBEROS authentication for Ansible to communicate with domain-joined Windows hosts
-            python312Packages.pip
-            python312Packages.pywinrm # Allow Ansible to manage Windows-hosts
-            python312Packages.requests
+            python3
+            python311Packages.flake8
+            python311Packages.kerberos # KERBEROS authentication for Ansible to communicate with domain-joined Windows hosts
+            python311Packages.pip
+            python311Packages.pywinrm # Allow Ansible to manage Windows-hosts
+            python311Packages.requests
             sshpass # For those rare cases when SSH is used with password 
             terraform # Infrastructure deployment automation
             terragrunt # Wrapper for Terraform
