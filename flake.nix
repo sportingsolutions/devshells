@@ -68,7 +68,7 @@
             nodejs # Needed for aws-azure-login
             packer # Template building automation
             pre-commit # Code valudation upon commit
-            python3
+            python312
             python312Packages.flake8
             python312Packages.kerberos # KERBEROS authentication for Ansible to communicate with domain-joined Windows hosts
             python312Packages.pip
