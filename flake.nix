@@ -65,12 +65,14 @@
             go-task # Task runner
             htop 
             jq # Utility to display JSON files 
+            krb5
             nodejs # Needed for aws-azure-login
             packer # Template building automation
             pre-commit # Code valudation upon commit
             python3
             python311Packages.flake8
-            python311Packages.kerberos # KERBEROS authentication for Ansible to communicate with domain-joined Windows hosts
+            python311Packages.pykerberos
+            # python311Packages.kerberos # KERBEROS authentication for Ansible to communicate with domain-joined Windows hosts
             python311Packages.pip
             python311Packages.pywinrm # Allow Ansible to manage Windows-hosts
             python311Packages.requests
