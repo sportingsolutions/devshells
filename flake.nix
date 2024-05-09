@@ -23,7 +23,11 @@
       # Nixpkgs instantiated for supported system types.
       nixpkgsFor = forAllSystems (system: import nixpkgs { inherit system; config = 
         {
-          allowUnfree = true;      
+          # These are neccesary to allow certain restrictions to be removed
+          allowUnfree = true; 
+          permittedInsecurePackages = [
+                "python3.12-kerberos-1.3.1"
+              ];     
         }; 
         }
       );
@@ -51,95 +55,91 @@
           #? nix develop .#default
           default = pkgs.mkShell {          
             buildInputs = with pkgs; [ 
-              # ansible  # IT automation
-              # aws-azure-login # Terraform uses this to allow access to state files
-              # awscli2 # Terraform uses this to allow access to state files
-              # ansible-lint # Linter for Ansible #! install this directly until solution found to get latest
-              google-cloud-sdk # Required for accesing Vault
-              # glibcLocales  # Ansible  needs this [source: https://github.com/NixOS/nixpkgs/issues/223151]
-              # gomplate
-              # go-task # Task runner
-              htop 
-              jq # Utility to display JSON files
-              just # a [better] 'make'-alternative 
-              # nodejs # Needed for aws-azure-login
-              # packer # Template building automation
-              pre-commit # Code valudation upon commit
-
-              # python3
-              # python312Packages.flake8
-              # python312Packages.kerberos # KERBEROS authentication for Ansible to communicate with domain-joined Windows hosts              #FIXME: this needs inseucre packages!
-              # python312Packages.pip
-              # python312Packages.pywinrm # Allow Ansible to manage Windows-hosts
-              # python312Packages.requests
-              # python312Packages.ruamel-yaml #! allowws using: ruamel-yaml:0.18.6
-
-              # sshpass # For those rare cases when SSH is used with password 
-              # terraform # Infrastructure deployment automation
-              # terragrunt # Wrapper for Terraform
-              tree # Utility to quickly view folder structure
-              # tmux # Terminal multiplexer
-              whois # DNS lookup
-              # xorriso # Packer needs this in order to build VMWare VM images
-              vault-bin # CLI for accessing our Vault #! --> NOT the one without '-bin' [forget about that one! seriously!]
-              # zsh # A better shell
+            ansible  # IT automation
+            aws-azure-login # Terraform uses this to allow access to state files
+            awscli2 # Terraform uses this to allow access to state files
+            ansible-lint # Linter for Ansible #! install this directly until solution found to get latest
+            google-cloud-sdk # Required for accesing Vault
+            glibcLocales  # Ansible  needs this [source: https://github.com/NixOS/nixpkgs/issues/223151]
+            gomplate
+            go-task # Task runner
+            htop 
+            jq # Utility to display JSON files 
+            nodejs # Needed for aws-azure-login
+            packer # Template building automation
+            pre-commit # Code valudation upon commit
+            python3
+            python312Packages.flake8
+            python312Packages.kerberos # KERBEROS authentication for Ansible to communicate with domain-joined Windows hosts
+            python312Packages.pip
+            python312Packages.pywinrm # Allow Ansible to manage Windows-hosts
+            python312Packages.requests
+            sshpass # For those rare cases when SSH is used with password 
+            terraform # Infrastructure deployment automation
+            terragrunt # Wrapper for Terraform
+            tree # Utility to quickly view folder structure
+            tmux # Terminal multiplexer
+            whois # DNS lookup
+            xorriso # Packer needs this in order to build VMWare VM images
+            vault-bin # CLI for accessing our Vault #! --> NOT the one without '-bin' [forget about that one! seriously!]
+            zsh # A better shell
               ];
             shellHook = ''              
               echo "==>  Entering generic development environment ==>  "
             '';                
           };
 
-          #? usage: 
-          #? nix develop .#packer
-          packer = pkgs.mkShell {          
-            buildInputs = with pkgs; [ 
+          # #? usage: 
+          # #? nix develop .#packer
+          # packer = pkgs.mkShell {          
+          #   buildInputs = with pkgs; [ 
 
-              google-cloud-sdk # Required for accesing Vault
+          #     google-cloud-sdk # Required for accesing Vault
 
-              htop 
-              jq # Utility to display JSON files
-              just # a [better] 'make'-alternative 
-              packer # Template building automation
-              pre-commit # Code valudation upon commit
+          #     htop 
+          #     jq # Utility to display JSON files
+          #     just # a [better] 'make'-alternative 
+          #     packer # Template building automation
+          #     pre-commit # Code valudation upon commit
 
-              tree # Utility to quickly view folder structure
+          #     tree # Utility to quickly view folder structure
 
-              whois # DNS lookup
-              xorriso # Packer needs this in order to build VMWare VM images
-              vault-bin # CLI for accessing our Vault #! --> NOT the one without '-bin' [forget about that one! seriously!]
+          #     whois # DNS lookup
+          #     xorriso # Packer needs this in order to build VMWare VM images
+          #     vault-bin # CLI for accessing our Vault #! --> NOT the one without '-bin' [forget about that one! seriously!]
 
-              ];
-            shellHook = ''              
-              echo "==>  Entering PACKER development environment ==>  "
-            '';                
-          };
+          #     ];
+          #   shellHook = ''              
+          #     echo "==>  Entering PACKER development environment ==>  "
+          #   '';                
+          # };
 
-          #? usage: 
-          #? nix develop .#ansible
-          ansible = pkgs.mkShell {         
-            buildInputs = with pkgs; [ 
-              ansible  # IT automation
-              ansible-lint # Linter for Ansible #! install this directly until solution found to get latest
-              google-cloud-sdk # Required for accesing Vault
-              glibcLocales  # Ansible  needs this [source: https://github.com/NixOS/nixpkgs/issues/223151]
-              just # a [better] 'make'-alternative 
-              pre-commit # Code valudation upon commit
-              python3
-              python312Packages.flake8
-              python312Packages.kerberos # KERBEROS authentication for Ansible to communicate with domain-joined Windows hosts              #FIXME: this needs inseucre packages!
-              python312Packages.pip
-              python312Packages.pywinrm # Allow Ansible to manage Windows-hosts
-              python312Packages.requests
-              python312Packages.ruamel-yaml #! allowws using: ruamel-yaml:0.18.6
-              sshpass # For those rare cases when SSH is used with password 
-              tree # Utility to quickly view folder structure
-              vault-bin # CLI for accessing our Vault #! --> NOT the one without '-bin' [forget about that one! seriously!]
+          # #? usage: 
+          # #? nix develop .#ansible
+          # ansible = pkgs.mkShell {         
+          #   buildInputs = with pkgs; [ 
+          #     ansible  # IT automation
+          #     ansible-lint # Linter for Ansible #! install this directly until solution found to get latest
+          #     google-cloud-sdk # Required for accesing Vault
+          #     glibcLocales  # Ansible  needs this [source: https://github.com/NixOS/nixpkgs/issues/223151]
+          #     just # a [better] 'make'-alternative 
+          #     pre-commit # Code valudation upon commit
+          #     python3
+          #     python312Packages.flake8
+          #     python312Packages.kerberos # KERBEROS authentication for Ansible to communicate with domain-joined Windows hosts              #FIXME: this needs inseucre packages!
+          #     python312Packages.pip
+          #     python312Packages.pywinrm # Allow Ansible to manage Windows-hosts
+          #     python312Packages.requests
+          #     python312Packages.ruamel-yaml #! allowws using: ruamel-yaml:0.18.6
+          #     sshpass # For those rare cases when SSH is used with password 
+          #     tree # Utility to quickly view folder structure
+          #     vault-bin # CLI for accessing our Vault #! --> NOT the one without '-bin' [forget about that one! seriously!]
 
-              ];
-            shellHook = ''
-              echo "==>  Entering Ansible development environment ==>  "
-            '';                 
-          };  
+          #     ];
+          #   shellHook = ''
+          #     echo "==>  Entering Ansible development environment ==>  "
+          #   '';                 
+          # };  
                   
         });
 
