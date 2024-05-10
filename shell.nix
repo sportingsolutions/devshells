@@ -1,11 +1,14 @@
 
 let
-  pkgs = import (fetchTarball https://nixos.org/channels/nixpkgs-unstable/nixexprs.tar.xz) { };
+  unstable = import (fetchTarball https://nixos.org/channels/nixos-unstable/nixexprs.tar.xz) { };
 
-in pkgs.mkShell {
-  packages = with pkgs; [
+in
+{ nixpkgs ? import <nixpkgs> {} }:
 
-    hello # just check if nix is working
+with nixpkgs; mkShell {
+  
+  buildInputs = [ 
+        hello # just check if nix is working
 
     #? Packages for Ansible
     ansible  # IT automation
@@ -45,8 +48,10 @@ in pkgs.mkShell {
     whois # DNS lookup
 
     #? Developper tools
+    niv # 
     pre-commit # Code valudation upon commit    
     zsh # A better shell
 
-  ];
+   ];
 }
+

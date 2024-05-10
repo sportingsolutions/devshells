@@ -106,23 +106,23 @@ export GRAFANA_PASSWORD=""
 export SLACK_WEBHOOK=""
 
 #*# -  #FIXME: should not use personal creds / use service cred and move those to VAULT
-export SIG_DOMAIN_U=""                         # FIXME: replace this with your account
-export SIG_DOMAIN_P=""                           # FIXME: replace this with your account
+# export SIG_DOMAIN_U=""                         # FIXME: replace this with your account
+# export SIG_DOMAIN_P=""                           # FIXME: replace this with your account
 
 export SPORTING_DOMAIN_U=""          # FIXME: replace this with your account
 export SPORTING_DOMAIN_P=""                      # FIXME: replace this with your account
 
-export GB_SPORTING_DOMAIN_U=""    # FIXME: replace this with your account
-export GB_SPORTING_DOMAIN_P=""                   # FIXME: replace this with your account
+# export GB_SPORTING_DOMAIN_U=""    # FIXME: replace this with your account
+# export GB_SPORTING_DOMAIN_P=""                   # FIXME: replace this with your account
 
-# export SIG_DOMAIN_U=""
-# export SIG_DOMAIN_P=""
+export SIG_DOMAIN_U=""
+export SIG_DOMAIN_P=""
 
 # export SPORTING_DOMAIN_U=""
 # export SPORTING_DOMAIN_P=""
 
-# export GB_SPORTING_DOMAIN_U=""
-# export GB_SPORTING_DOMAIN_P=""
+export GB_SPORTING_DOMAIN_U=""
+export GB_SPORTING_DOMAIN_P=""
 
 #*# -  #FIXME: move these to VAULT
 export VSPHERE_USERNAME=""
