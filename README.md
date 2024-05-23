@@ -63,25 +63,24 @@ cp .envrc_example /home/123JBloggs/myprojects/.envrc
 
 ## Nix
 
-Download the `shell.nix` and place it to the (same as above) project folder of yours. Then enter to this folder
+Download the `flake.nix` and place it to the (same as above) project folder of yours. Then enter to this folder
 
 ### Validate
 
 If done correctly, you will see something along the lines of:
 
 ```sh
-❯ cd projects/
-direnv: loading ~/projects/.envrc
-direnv: using nix
-direnv: ([/usr/bin/direnv export bash]) is taking a while to execute. Use CTRL-C to give up.
-direnv: export +ANSIBLE_CONFIG ...
-...
+808fsemti in 🌐 dc1devjump02p in devshells on  dev [⇡] on ☁️  fsemti@sportinggroup.co.uk
+❯ cd ~/projects/
+copying '/' to the storedirenv: ([/usr/bin/direnv export bash]) is taking a while to execute. Use CTRL-C to give up.
+....
+Hello, world!
 ```
 
 This means:
 - direnv is working
 - it uses the nix file 
-- it will load all the programs listed in the `shell.nix` file
+- it will load all the programs listed in the `flake.nix` file
 
 > note: on a new system, **this will take time** as there is a _lot_ to download; but due to the way `nix` works, if you are using a system where the packages are already there, so the load time should not be bad
 
@@ -116,8 +115,8 @@ If you get this, you can now use all the programs I defined here. They will be l
 /usr/bin/direnv
 ```
 
-- however, the programs defined in the `shell.nix` are only available in the folder you put it and it's children
-- if you leave the folder, the nix-programs wont be available for you (but the ones in `/bin` willbe)
+- however, the programs defined in the `flake.nix` are only available in the folder you put it and it's children
+- if you leave the folder, the nix-programs wont be available for you (but the ones in `/bin` will be)
 
 ```sh
 808fsemti in 🌐 dc1devjump02p in ~/projects via ❄️  impure (nix-shell) on ☁️  fsemti@sportinggroup.co.uk
