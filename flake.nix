@@ -9,15 +9,14 @@
   };
 
   nixConfig = {
-    extra-trusted-public-keys = "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=";
+    extra-trusted-public-keys =
+      "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=";
     extra-substituters = "https://devenv.cachix.org";
   };
 
-  outputs = { self, nixpkgs, devenv, ... } @ inputs:
-    let
-      pkgs = nixpkgs.legacyPackages."x86_64-linux";
-    in
-    {
+  outputs = { self, nixpkgs, devenv, ... }@inputs:
+    let pkgs = nixpkgs.legacyPackages."x86_64-linux";
+    in {
       devShell.x86_64-linux = devenv.lib.mkShell {
         inherit inputs pkgs;
         modules = [
@@ -31,7 +30,7 @@
               glibcLocales
               python3
               python311Packages.dnspython
-              python311Packages.mitogen # https://www.linkedin.com/pulse/how-speed-up-ansible-playbooks-drastically-lionel-gurret          # ❯ python -c "import mitogen; print(mitogen.__file__)"    
+              python311Packages.mitogen # https://www.linkedin.com/pulse/how-speed-up-ansible-playbooks-drastically-lionel-gurret          # ❯ python -c "import mitogen; print(mitogen.__file__)"
               python311Packages.pykerberos
               python311Packages.pip
               python311Packages.pyspnego
@@ -55,8 +54,8 @@
 
               # Utilities
               go-task
-              htop 
-              jq 
+              htop
+              jq
               just
               tree
               tmux
@@ -65,12 +64,12 @@
               # Developer tools
               niv
               nixfmt-rfc-style
-              nixfmt
+              nixfmt-classic
               pre-commit
 
               # Terminal
               zsh
-              zellij
+              tmux
 
               # Default packages from Nixpkgs
               hello

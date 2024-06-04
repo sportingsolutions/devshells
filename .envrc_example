@@ -2,14 +2,11 @@ export NIXPKGS_ALLOW_INSECURE=1
 export NIXPKGS_ALLOW_UNFREE=1
 
 # source venv/bin/activate
-# # https://github.com/direnv/direnv/wiki/PS1
+# https://github.com/direnv/direnv/wiki/PS1
 # unset PS1
 
 #& THE KEY TO A REPRODUCABLE ENVIRONMENT IS TO -->
 use flake --impure
-
-#& DEFINE LOCALE
-export LC_ALL=C.UTF-8
 
 #& PACKER DEFAULTS
 #*# Ansible Credentials - #FIXME: move these to VAULT
